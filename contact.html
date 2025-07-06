@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="contact-page" data-aos="fade-up">
+  <h2 class="section-title">📞 Contact Us</h2>
+
+  {% if message_sent %}
+    <div class="success-message" data-aos="zoom-in">
+      ✅ Your message has been sent successfully!
+    </div>
+  {% endif %}
+
+  <div class="contact-container" data-aos="fade-up">
+    
+    <!-- Contact Info Box -->
+    <div class="contact-info">
+      <h3>📬 Get in Touch</h3>
+      <p><strong>Email:</strong> support@myfurniture.com</p>
+      <p><strong>Phone:</strong> +91 987654321</p>
+      <p><strong>Address:</strong> 123 Furniture Street,<br>Bhubaneswar, Odisha, India</p>
+    </div>
+
+    <!-- Contact Form -->
+    <form method="post" action="/contact" class="contact-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+
+      <button type="submit">Send</button>
+    </form>
+
+  </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velvet Vogue - Furniture Store</title>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- AOS Animation CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Welcome Screen (Portrait with logo & text) -->
+  <div id="welcome-screen">
+    <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Logo" id="welcome-logo" />
+    <div class="welcome-content">
+      <h1>Welcome to <span>Velvet Vogue</span></h1>
+      <p>Explore stylish and quality furniture for your dream home</p>
+    </div>
+  </div>
+
+  <!-- Header / Navbar -->
+  <header>
+    <div class="nav-container" data-aos="fade-down">
+      <div class="logo">Velvet <span style="color: #6684bb;">Vogue</span>.</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/cart">Cart</a>
+        <a href="/new-arrival">New Arrival</a>
+        <a href="/about">About</a>
+        <a href="/partners">Our Partners</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Page Content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <div class="footer-top">
+      <div class="newsletter">
+        <h3>Subscribe To Newsletter</h3>
+        <form>
+          <input type="email" placeholder="Your email" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        <h4>Velvet <span style="color: #c9ce2a;">Vogue</span></h4>
+        <p>Your trusted partner for elegant and modern furniture solutions.</p>
+        <div class="social-icons">
+          <i>📘</i> <i>🐦</i> <i>📸</i>
+        </div>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li>Product</li>
+          <li>Help & Support</li>
+          <li>Pricing</li>
+          <li>FAQ</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li>Sofas</li>
+          <li>Chairs</li>
+          <li>Dining Tables</li>
+          <li>Beds</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p>India, Odisha</p>
+        <p>+91 9876543210</p>
+        <p>furniture@velvetvogue.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Welcome Screen Logic (Show only once per session)
+    document.addEventListener("DOMContentLoaded", function () {
+      const welcomeScreen = document.getElementById("welcome-screen");
+      const alreadyShown = sessionStorage.getItem("welcomeShown");
+
+      if (alreadyShown) {
+        welcomeScreen.style.display = "none";
+      } else {
+        welcomeScreen.style.display = "flex";
+        setTimeout(() => {
+          welcomeScreen.classList.add("hide");
+          sessionStorage.setItem("welcomeShown", "true");
+        }, 3000); // Show for 5 seconds (change to 120000 for 2 min)
+      }
+    });
+  </script>
+</body>
+</html>
